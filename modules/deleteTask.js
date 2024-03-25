@@ -1,24 +1,20 @@
-const { showTasks } = require("./showTasks");
-
-function deleteTask(tasks) {
-  return new Promise((resolve) => {
+function deleteTask(tasks, taskId) {
+  return new Promise((resolve, reject) => {
     if (tasks.length === 0) {
-      console.log("No hay tareas para eliminar.");
-      resolve();
+      reject(new Error("No hay tareas para eliminar."));
       return;
     }
 
-    // Llama a la función showTasks para mostrar las tareas y obtener la tarea seleccionada
-    const taskIndex = showTasks(tasks, "Seleccione la tarea a eliminar:");
+    // encuentra el indice de la tarea con el ID correspondiente
+    const taskIndex = tasks.findIndex((task) => task.id === parseInt(taskId));
 
-    // verifica si el usuario canceló la selección
+    // verifica si la tarea no se encontro
     if (taskIndex === -1) {
-      console.log("Cancelado.");
-      resolve();
+      reject(new Error("La tarea especificada no existe."));
       return;
     }
 
-    tasks.splice(taskIndex, 1); // Elimina la tarea seleccionada del arreglo de tareas
+    tasks.splice(taskIndex, 1); // Eliminar la tarea seleccionada del array de tareas
     console.log("Tarea eliminada correctamente.");
     resolve();
   });

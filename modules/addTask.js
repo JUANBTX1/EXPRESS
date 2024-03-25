@@ -1,5 +1,3 @@
-const readlineSync = require("readline-sync");
-
 const tasks = [
   {
     id: 1,
@@ -13,11 +11,9 @@ const tasks = [
   },
 ];
 
-function addTask() {
+function addTask(description) {
   return new Promise((resolve, reject) => {
-    const description = readlineSync.question("Descripción de la tarea: ");
-
-    // Validación de la descripción de la tarea
+    // Validacion de la descripcion de la tarea
     if (!description.trim()) {
       reject(new Error("La descripción de la tarea no puede estar vacía."));
       return;
