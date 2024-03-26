@@ -1,4 +1,4 @@
-# Mi Producto: Lista de Tareas
+Lista de Tareas
 
 ## ¿Qué es mi producto y para qué sirve?
 
